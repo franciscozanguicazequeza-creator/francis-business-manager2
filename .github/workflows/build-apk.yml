@@ -24,8 +24,13 @@ jobs:
       - name: Preparar Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Instalar Android
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - name: Aceitar licenças Android
+        run: yes | sdkmanager --licenses
+
+      - name: Instalar Android SDK
+        run: |
+          sdkmanager --install "platforms;android-35"
+          sdkmanager --install "build-tools;35.0.0"
 
       - name: Preparar Gradle
         uses: gradle/actions/setup-gradle@v4
